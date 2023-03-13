@@ -102,7 +102,7 @@ def viewInventory():
             editInventoryItem()
             break
         elif userChoice== '2':
-            deletInventoryItem()
+            deleteInventoryItem()
             break
 
 def editInventoryItem():
@@ -163,7 +163,7 @@ def editInventoryItem():
         addItemsToFile(invItems, clear = True)
         returnToMainMenu("Item Amount Has Been Changed")
 
-def deleteInventoryItems():
+def deleteInventoryItem():
     print("DELETE INVENTORY ITEM")
     print("---------------------")
     print()
@@ -177,10 +177,10 @@ def deleteInventoryItems():
             print()
 
     while True:
-        confirmation = input("CONFIRMATION: Are You Sure You Want To Delete This Item?").lower()
-        if confirmation in ['yes','no']:
+        confirmation = input("CONFIRMATION: Are You Sure You Want To Delete This Item?  (y/n)").lower()
+        if confirmation in ['y','n']:
             break
-    if confirmation == 'yes':
+    if confirmation == 'yes' or 'y':
         del invItems[itemToDelete]
         addItemsToFile(invItems, clear= True)
         returnToMainMenu("Item Has Been Deleted")
@@ -198,7 +198,7 @@ def addItemsToFile(userItems: dict, clear: bool):
             writer.writerow([item, amount])
 
 
-'''  removed this because was not writing to txt file        
+'''  changed this because was not writing to txt file        
 def addItemsToFile(userItems: dict, clear: bool):
     if clear:
         with open('userItems.txt', 'a') as file:
